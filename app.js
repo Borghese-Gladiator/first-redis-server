@@ -3,6 +3,13 @@ const app = express();
 const redis = require('redis');
 const fetch = require('cross-fetch');
 const cacheClient = redis.createClient();
+
+// This is required so your error doesn't bubble
+// upwards and kills your instance
+app.on("error", function (err) {
+    console.log("Error " + err);
+});
+
 app.get('/', async (req, res, next) => {
     await cacheClient.get('sample', async (err, data) => {
         if (err) console.error(err);
@@ -23,12 +30,6 @@ app.get('/', async (req, res, next) => {
         }
 
     })
-});
-
-// This is required so your error doesn't bubble
-// upwards and kills your instance
-app.on("error", function (err) {
-    console.log("Error " + err);
 });
 
 app.listen(process.env.PORT || 3000, () => console.log('listening on port 3000'));
