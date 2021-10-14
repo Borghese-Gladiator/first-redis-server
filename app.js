@@ -24,4 +24,11 @@ app.get('/', async (req, res, next) => {
 
     })
 });
-app.listen(3000, () => console.log('listening on port 3000'));
+
+// This is required so your error doesn't bubble
+// upwards and kills your instance
+app.on("error", function (err) {
+    console.log("Error " + err);
+});
+
+app.listen(process.env.PORT || 3000, () => console.log('listening on port 3000'));
