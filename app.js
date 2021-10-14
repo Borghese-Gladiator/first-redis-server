@@ -6,9 +6,11 @@ const cacheClient = redis.createClient();
 
 // This is required so your error doesn't bubble
 // upwards and kills your instance
-app.on("error", function (err) {
+cacheClient.on("error", function (err) {
     console.log("Error " + err);
 });
+cacheClient.set("key", "value", redis.print);
+cacheClient.get("key", redis.print);
 
 app.get('/', async (req, res, next) => {
     await cacheClient.get('sample', async (err, data) => {
