@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "concurrently \"npm:start-node\" \"npm:start-redis\"",
-    "start-redis": "cd redis-stable/src && pwd && ls -l && redis-server",
+    "start-redis": "cd redis-stable/src && pwd && ls -l && ./redis-server",
     "start-node": "node app.js",
     "heroku-postbuild": "wget http://download.redis.io/redis-stable.tar.gz && tar xvzf redis-stable.tar.gz && cd redis-stable && make && npm run start"
   },
