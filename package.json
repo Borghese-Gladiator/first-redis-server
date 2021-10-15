@@ -4,14 +4,17 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "wget http://download.redis.io/redis-stable.tar.gz && tar xvzf redis-stable.tar.gz && cd redis-stable && make && make test && PATH=\"/tmp/build_a59c7964/redis-stable/src${PATH:+:${PATH}}\" && redis-server"
+    "start": "concurrently \"npm:start-node\" \"npm:start-redis\"",
+    "start-redis": "redis-server",
+    "start-node": "node app.js",
+    "heroku-postbuild": "wget http://download.redis.io/redis-stable.tar.gz && tar xvzf redis-stable.tar.gz && cd redis-stable && export REDIS_PATH=\"$(pwd)\" && make && PATH=\"${REDIS_PATH}${PATH:+:${PATH}}\" && npm run start"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.23.0",
+    "concurrently": "^6.3.0",
     "cross-fetch": "^3.1.4",
     "express": "^4.17.1",
     "redis": "^3.1.2"
