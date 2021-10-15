@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "heroku-postbuild": "wget http://download.redis.io/redis-stable.tar.gz && tar xvzf redis-stable.tar.gz && cd redis-stable && make && cd .. && redis-server"
+    "heroku-postbuild": "wget http://download.redis.io/redis-stable.tar.gz && tar xvzf redis-stable.tar.gz && cd redis-stable && make && make test && PATH=\"/tmp/build_a59c7964/redis-stable/src${PATH:+:${PATH}}\" && redis-server"
   },
   "keywords": [],
   "author": "",
