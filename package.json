@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "redis-server"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +16,4 @@
     "express": "^4.17.1",
     "redis": "^3.1.2"
   },
-  "heroku-postbuild": "redis-server"
 }
