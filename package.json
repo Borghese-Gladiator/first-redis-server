@@ -2,7 +2,6 @@
   "name": "first-redis-server",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
   "scripts": {
     "start": "npm run install-redis && concurrently \"npm:start-node\" \"npm:start-redis\"",
     "start-redis": "cd redis-stable/src && pwd && ls -l && ./redis-server",
