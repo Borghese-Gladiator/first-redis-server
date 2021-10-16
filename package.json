@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "npm run install-redis && concurrently \"npm:start-node\" \"npm:start-redis\"",
+    "start": "concurrently \"npm:start-node\" \"npm:start-redis\"",
     "start-redis": "cd redis-stable/src && pwd && ls -l && ./redis-server",
     "start-node": "node app.js",
-    "install-redis": "wget http://download.redis.io/redis-stable.tar.gz && tar xvzf redis-stable.tar.gz && cd redis-stable && make"
+    "install-redis": "wget http://download.redis.io/redis-stable.tar.gz && tar xvzf redis-stable.tar.gz && cd redis-stable && make",
+    "heroku-postbuild": "npm run install-redis"
   },
   "keywords": [],
   "author": "",
